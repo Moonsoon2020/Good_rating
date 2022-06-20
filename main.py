@@ -6,11 +6,58 @@ from input import *
 from work import *
 from DataBase import *
 
+estimation = {}
+
+
+def selection(massive, value, estimation):
+    i = 0
+    m = massive
+    if value < estimation:
+        while sum(massive) / len(massive) <= value:
+            massive.append(estimation)
+            i += 1
+    else:
+        while sum(massive) / len(massive) >= value:
+            massive.append(estimation)
+            i += 1
+    massive, m = m, massive
+    return i, sum(m) / len(m)
+
+
+def calculation():
+    global u
+    sr = round(sum(estimation[u.comboBox.currentText()]) / len(estimation[u.comboBox.currentText()]), 3)
+    u.textBrowser.setText(f'По предмету "{u.comboBox.currentText()}" ваш баллл на данный момент -'
+                          f' {sr}. Чтобы получить балл {round(u.doubleSpinBox.value(), 3)} '
+                          f'вы можете получить '
+                          f'{selection(estimation[u.comboBox.currentText()], u.doubleSpinBox.value(), u.spinBox.value())}'
+                          f' оценок типа {u.spinBox.value()}.')
+    print(u.comboBox.currentText())
+    print(estimation[u.comboBox.currentText()])
+    print(u.doubleSpinBox.value())
+    print(u.spinBox.value())
+
+
+def output():
+    window.close()
+    global ui
+    ui = Ui_MainWindow_Input()
+    ui.setupUi(window)
+    ui.pushButton.clicked.connect(clickedButton)
+    window.show()
+
+
 def newWindow():
     window.close()
+    global u
     u = Ui_MainWindow_Work()
     u.setupUi(window)
     window.show()
+    for i in estimation.keys():
+        u.comboBox.addItem(i)
+    u.pushButton.clicked.connect(calculation)
+    u.pushButton_2.clicked.connect(output)
+
 
 def inp(ses):
     link = 'https://edu.gounn.ru/journal-student-grades-action/u.20056'
@@ -21,7 +68,7 @@ def inp(ses):
     data = beaLink.find('div', {'class': 'layout-main'}).find('div', {'class': 'grid-body'}). \
         findAll('div', {'class': 'cell'})
     perv = data[0].get('name')
-    estimation = {perv: []}
+    estimation[perv] = []
     quantity = 1
     for i in data[1:]:
         estimation[i.get('name')] = []
@@ -63,14 +110,13 @@ def clickedButton():
 
 
 def checkStatus():  # проверка есть ли уже введёный аккаунт в бзд
-    print()
-    if type(controlBD.get()) == tuple:
+    if len(controlBD.get()) != 0:
         headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
                                  'Chrome/100.0.4896.160 YaBrowser/22.5.2.615 Yowser/2.5 Safari/537.36'}
         auto = 'https://edu.gounn.ru/ajaxauthorize'
         data = {
-            'username': controlBD.get()[0],
-            'password': controlBD.get()[1],
+            'username': controlBD.get()[0][0],
+            'password': controlBD.get()[0][1],
             'return_uri': '/'
         }
         ses = requests.Session()
@@ -93,4 +139,4 @@ if __name__ == '__main__':
         ui.setupUi(window)
         ui.pushButton.clicked.connect(clickedButton)
         window.show()
-
+        sys.exit(app.exec())

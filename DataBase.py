@@ -20,7 +20,7 @@ class ControlDB:
         self.con.commit()
 
     def get(self):
-        return [self.con.cursor().execute(f'''SELECT login, password FROM date''').fetchall()][0][0]
+        return self.con.cursor().execute(f'''SELECT login, password FROM date''').fetchall()
 
 # c = ControlDB()
 # c.add('l', 'u')
