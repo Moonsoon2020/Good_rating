@@ -59,7 +59,7 @@ class Ui_MainWindow_Work(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Good Rating"))
         self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"justify\"><span style=\" font-size:12pt;\">Отлично, теперь выберите предмет, балл, который вы хотите получить, оценку, которой вы хотите поднять/опустить балл. Следующие инструкции будут написаны ниже. Помните, что балл можно как опустить, так и поднять. </span></p></body></html>"))
         self.label_2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">Предмет</span></p></body></html>"))
         self.label_3.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">Средний балл</span></p></body></html>"))

@@ -73,5 +73,4 @@ class Ui_MainWindow_Input(object):
                                            "<html><head/><body><p align=\"justify\"><span style=\" font-size:12pt; font-weight:600;\">Good Rating </span><span style=\" font-size:12pt;\">- приложение-дополнение для электронного дневника Нижегородской области. Теперь Вам не прийдётся считать: сколько вам нужно получить пятёрок, чтобы в четверти вышла 5, или на какую максимально плохую оценку я могу написать контрольную. </span></p><p align=\"right\"><span style=\" font-size:12pt;\">Приложение работает для </span><span style=\" font-size:12pt; text-decoration: underline;\">всех учеников зарегистрированных на платформе</span><span style=\" font-size:12pt;\">. </span></p></body></html>"))
         self.label_dop_ifo.setText(_translate("MainWindow",
                                               "<html><head/><body><p align=\"justify\"><span style=\" font-size:12pt;\"> Пожалуйста, введите логин и пароль.</span></p></body></html>"))
-        # self.plainTextEdit_login.setPlainText(_translate("MainWindow", "bogdanvoinov9"))
-        # self.plainTextEdit_password.setPlainText(_translate("MainWindow", "300905god"))
+
